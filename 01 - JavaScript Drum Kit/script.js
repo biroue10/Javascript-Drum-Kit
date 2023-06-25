@@ -5,10 +5,12 @@ Array.from(player).forEach(function(element){
         const element = item.target.parentNode
         element.classList.toggle("playing")
         const code = element.getAttribute('data-key')
-        console.log(element)
-        console.log(code)
         const audio = document.querySelector(`audio[data-key="${code}"]`)
-        console.log(audio)
         audio.play()
-    })
+    });
+    function removeTransition(e){
+        if(e.propertyName!='transform') return;
+        this.classList.remove('playing')
+    }
+    element.addEventListener('transitionend', removeTransition);
 })
